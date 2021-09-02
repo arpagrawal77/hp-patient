@@ -1,5 +1,6 @@
 import HpBarChart from './../hp-bar-chart/hp-bar-chart.vue';
 import HpPieChart from './../hp-pie-chart/hp-pie-chart.vue';
+import PatientService from '../../services/patient-service';
 
 export default {
   name: 'hp-home',
@@ -7,6 +8,7 @@ export default {
   props: {},
   data() {
     return {
+      patientService: new PatientService(),
       chartdata: {
         labels: ['18 Jul', '19 Jul', '20 Jul', '21 Jul', '22 Jul', '23 Jul'],
         datasets: [
@@ -61,7 +63,15 @@ export default {
   computed: {
   },
   mounted() {
+    const config = {};
+    this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handlePatientResponseError)
   },
   methods: {
+    handlePatientResponse(res) {
+      console.log(res.data.data);
+    },
+    handlePatientResponseError(err) {
+      console.log(err);
+    }
   },
 };

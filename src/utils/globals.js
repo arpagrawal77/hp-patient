@@ -1,8 +1,9 @@
 import serviceUrls from './hp-service-urls';
 
-const BASE_URL = window.apiHost;
+// const BASE_URL = window.apiHost;
+const PATIENT_PORT = 'http://34.132.195.252';
 // const assetsSubPath = 'static/assets/';
-const API_PREFIX = 'api/v2';
+const API_PREFIX = 'api/v1';
 // const ACCESS_KEY = 'access_token';
 
 const globals = {
@@ -22,7 +23,7 @@ const globals = {
     },
     getRestUrl(endPoint) {
       let url = '';
-      url = `${BASE_URL}/${API_PREFIX}/${this.serviceUrls[endPoint]}`;
+      url = `${PATIENT_PORT}/${API_PREFIX}/${this.serviceUrls[endPoint]}`;
       return url;
     },
     getUrlParam(paramKey) {

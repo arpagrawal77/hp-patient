@@ -1,13 +1,13 @@
 import RootService from './root-service';
-import globals from '../globals';
+import globals from '../utils/globals';
 
 
 class patientService extends RootService {
   
-  addItemsToCart(requestConfig, successCallback, errorCallback) {
+  getPatientDetails(requestConfig, successCallback, errorCallback) {
     const config = requestConfig;
-    config.url = globals.getRestUrl('flights');
-    this.post(config, successCallback, errorCallback);
+    config.url = globals.getRestUrl('patient');
+    this.get(config, successCallback, errorCallback);
   }
 }
 export {
