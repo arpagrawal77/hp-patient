@@ -1,0 +1,38 @@
+button {
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  padding: 7px 15px;
+  text-align: center;
+  color: @white;
+  border: 0;
+  font-size: 14px;
+  -webkit-appearance: none;
+  &.fs-primary {
+    width: 175px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: @fs-tertiary;
+    color: @fs-secondary;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 36px;
+    font-size: 18px;
+    background-color: @white;
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.22);
+  }
+  &.fs-secondary {
+    border-radius: 5px;
+    padding: 7px 0;
+    background-color: @fs-primary;
+    border: solid 1px @fs-primary;
+    min-width: 75px;
+    color: white;
+  }
+}
+
+.link {
+  color: @fs-secondary;
+  cursor: pointer;
+}

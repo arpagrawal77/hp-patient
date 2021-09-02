@@ -1,0 +1,154 @@
+.hp-home {
+  .page-heading{
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .patient-details{
+    display: flex;
+  }
+  .patient-name, .patient-image {
+    flex-basis: 6%;
+  }
+  
+  .patient-name {
+    padding: 0 20px;
+  }
+  
+  .patient-image {
+    img {
+      height: 65px;
+      width: 65px;
+      background: aliceblue;
+      border-radius: 50%;
+    }
+  }
+  .top-card-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    margin-bottom: 24px;
+      .top-card {
+        display: flex;
+        flex-direction: column;
+        background: #f7ede0;
+        padding: 24px;
+        flex-basis: 46%;
+        border-radius: 2%;
+        min-height: 400px;
+        .card-image {
+          flex-basis: 34%;
+        }
+        .card-text {
+          p {
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+    .white-card-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      .white-card {
+        flex-basis: 30%;
+        padding: 32px;
+        margin-right: 18px;
+      }
+      .card-data {
+        .medicines {
+          margin-bottom: 16px;
+        }
+      }
+    }
+    .card-heading {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .dark-text {
+      font-weight: 500;
+    }
+
+    .light-text {
+      font-weight: 100;
+    }
+    
+    .chart-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .chart {
+        max-width: 40%;
+        min-width: 40%;
+        flex: 1;
+        margin-right: 24px;
+        margin-bottom: 104px;
+      }
+    }
+
+    .box {
+      padding: 32px;
+      background: white;
+      box-shadow: 2px;
+      border-radius: 5px;
+      border: 2px solid #f7f7f7;
+      box-shadow: 1px 1px 1px 1px #00000014;
+    }
+
+    .recommended-diet-container {
+      margin-bottom: 56px;
+      ul {
+        max-height: 400px;
+        display: flex;
+        max-width: 45%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        li {
+          padding: 0 40px 0 8px;
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    .pie-chart-container {
+      display: flex;
+      padding: 24px;
+      align-items: center;
+      margin-bottom: 56px;
+      .half-container {
+        flex-basis: 50%;
+        .circular-data {
+          padding: 48px;
+          .circled-number {
+            padding: 32px;
+            border: 1px solid;
+            margin: 20px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .meals-container {
+      display: flex;
+      margin-bottom: 56px;
+      .meals.box {
+        padding: 24px 32px;
+        flex-basis: 48%;
+        margin-right: 24px;
+        .list-container {
+          display: flex;
+          margin-bottom: 24px;
+          .list-heading {
+            flex-basis: 20%;
+          }
+          ul {
+            list-style: none;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+
