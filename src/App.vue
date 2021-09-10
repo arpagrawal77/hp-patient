@@ -44,6 +44,9 @@ body,
   margin: 0 auto;
   padding: 48px;
   // padding-bottom: 80px;
+  @media only screen and (max-width: 768px) {
+    padding: 24px;
+  }
 }
 
 a {

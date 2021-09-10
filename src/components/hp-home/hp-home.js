@@ -56,7 +56,10 @@ export default {
           }
         ]
       },
-      pieChartOptions : {responsive: true, maintainAspectRatio: false}
+      pieChartOptions : {
+        responsive: true, 
+        maintainAspectRatio: false
+      }
     };
   },
   directives: {},

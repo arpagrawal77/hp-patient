@@ -35,6 +35,7 @@
         flex-basis: 46%;
         border-radius: 2%;
         min-height: 400px;
+        margin-right: 16px;
         .card-image {
           flex-basis: 34%;
         }
@@ -99,7 +100,7 @@
     .recommended-diet-container {
       margin-bottom: 56px;
       ul {
-        max-height: 400px;
+        max-height: 540px;
         display: flex;
         max-width: 45%;
         flex-direction: column;
@@ -148,6 +149,77 @@
             padding: 0;
           }
         }
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .top-card-container {
+        flex-direction: column;
+        margin-top: 0;
+        .top-card {
+          margin-top: 32px;
+          margin-right: 0;
+        }
+      }
+
+      .white-card-container {
+        flex-direction: column;
+        .white-card {
+          flex-basis: 100%;
+          margin-right: 0;
+          margin-top: 24px;
+        }
+      }
+
+      .recommended-diet-container {
+        margin-bottom: 32px;
+        ul {
+          max-height: unset;
+          max-width: unset;
+          li {
+            padding: 0;
+          }
+        }
+      }
+
+      .meals-container {
+        flex-direction: column;
+        .meals.box {
+          padding: 24px;
+          flex-basis: auto;
+          margin-right: 0;
+          margin-top: 24px;
+        }
+      }
+
+      .pie-chart-container {
+        flex-direction: column;
+        .half-container {
+          flex-basis: auto;
+          margin: 0 32px;
+          
+          .circular-data {
+            padding: 24px;
+            .circled-number {
+              padding: 18px;
+              margin: 4px;
+            }
+          }
+        }
+      }
+
+      .chart-container {
+        flex-direction: column;
+        .chart {
+          max-width: 100%;
+          min-width: 100%;
+          margin-right: 0;
+          margin-bottom: 48px;
+        }
+      }
+
+      .box {
+        padding: 24px;
       }
     }
   }
