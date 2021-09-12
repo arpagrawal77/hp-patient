@@ -30,7 +30,7 @@
       .top-card {
         display: flex;
         flex-direction: column;
-        background: #f7ede0;
+        background: #F9ECE5;
         padding: 24px;
         flex-basis: 46%;
         border-radius: 2%;
@@ -79,13 +79,14 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      .chart {
-        max-width: 40%;
-        min-width: 40%;
-        flex: 1;
-        margin-right: 24px;
-        margin-bottom: 104px;
-      }
+    }
+
+    .chart {
+      max-width: 40%;
+      min-width: 40%;
+      flex: 1;
+      margin-right: 24px;
+      margin-bottom: 104px;
     }
 
     .box {
@@ -95,6 +96,11 @@
       border-radius: 5px;
       border: 2px solid #f7f7f7;
       box-shadow: 1px 1px 1px 1px #00000014;
+    }
+
+    .vital-charts {
+      display: flex;
+      justify-content: space-between;
     }
 
     .recommended-diet-container {
@@ -153,12 +159,25 @@
     }
 
     @media only screen and (max-width: 768px) {
+      .patient-details {
+        flex-wrap: wrap;
+        align-items: center;
+        .patient-name {
+          flex: 1;
+          flex-basis: 50%;
+        }
+        .other-details {
+          margin-top: 16px;
+        }
+      }
+
       .top-card-container {
         flex-direction: column;
         margin-top: 0;
         .top-card {
           margin-top: 32px;
           margin-right: 0;
+          min-height: max-content;
         }
       }
 
@@ -210,16 +229,21 @@
 
       .chart-container {
         flex-direction: column;
-        .chart {
-          max-width: 100%;
-          min-width: 100%;
-          margin-right: 0;
-          margin-bottom: 48px;
-        }
+      }
+
+      .chart {
+        max-width: 100%;
+        // min-width: 100%;
+        margin-right: 0;
+        margin-bottom: 48px;
       }
 
       .box {
         padding: 24px;
+      }
+
+      .vital-charts {
+        flex-direction: column;
       }
     }
   }

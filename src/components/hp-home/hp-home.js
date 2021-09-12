@@ -12,12 +12,13 @@ export default {
       patientDetails: {},
       medications: [],
       supplements: [],
+      goals: [],
       chartdata: {
         labels: ['18 Jul', '19 Jul', '20 Jul', '21 Jul', '22 Jul', '23 Jul'],
         datasets: [
           {
             label: 'Data One',
-            backgroundColor: '#ffc679',
+            backgroundColor: '#E5AE61',
             data: [20, 23, 0, 25, 0, 28]
           }
         ]
@@ -50,10 +51,10 @@ export default {
         datasets: [
           {
             backgroundColor: [
-              '#41B883',
-              '#E46651',
-              '#00D8FF',
-              '#DD1B16'
+              '#CEBFB2',
+              '#E5AE61',
+              '#F5D1B2',
+              '#D2743E'
             ],
             data: [40, 20, 80, 10]
           }
@@ -73,6 +74,7 @@ export default {
     this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handlePatientResponseError);
     this.patientService.getMedicationDetails(config,this.handleMedicationResponse,this.handleMedicationResponseError);
     this.patientService.getSupplimentDetails(config,this.handleSupplementResponse,this.handleSupplementResponseError);
+    this.patientService.getGoalsDetails(config,this.handleGoalsResponse,this.handleGoalsResponseError);
   },
   methods: {
     handlePatientResponse(res) {
@@ -94,6 +96,13 @@ export default {
       this.supplements = res.data.data.supplementDetails;
     },
     handleSupplementResponseError(err) {
+      console.log(err);
+    },
+    handleGoalsResponse(res) {
+      console.log(res.data.data);
+      this.goals = res?.data?.data?.goals;
+    },
+    handleGoalsResponseError(err) {
       console.log(err);
     }
   },

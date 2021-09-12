@@ -2,7 +2,7 @@
   <h3 class="page-heading">Medical Report</h3>
   <div class="patient-details" v-if="patientDetails">
     <div class="patient-image">
-      <img/>
+      <img src="../../assets/patient-image.png" height="100%" width="100%"/>
     </div>
     <div class="patient-name">{{patientDetails.firstName}} {{patientDetails.lastName}}</div>
     <div class="other-details">
@@ -31,20 +31,20 @@
       </div>
       <div class="card-heading">Goals</div>
       <div class="card-text">
-        <p>I want to dance with my daughter on her wedding day</p>
-        <p>I want to Lower my bp on priority</p>
-        <p>I want to dance with my daughter on her wedding day</p>
+        <p v-for="goal in goals">{{goal.goal}}</p>
+        <!-- <p>I want to Lower my bp on priority</p>
+        <p>I want to dance with my daughter on her wedding day</p> -->
       </div>
     </div>
     <div class="top-card">
       <div class="card-image">
         <img/>
       </div>
-      <div class="card-heading">Goals</div>
+      <div class="card-heading">Daily Reminders</div>
       <div class="card-text">
-        <p>I want to dance with my daughter on her wedding day</p>
-        <p>I want to Lower my bp on priority</p>
-        <p>I want to dance with my daughter on her wedding day</p>
+        <p>Excercise for 30 mins a day</p>
+        <p>Meditate every morning and night</p>
+        <p>Drink atleast 3 litres of water</p>
       </div>
     </div>
   </div>
@@ -238,6 +238,23 @@
                       </div>
                     </div>
       </div>
+  </div>
+  <div class="vitals-container">
+    <div class="card-heading">Vitals and Gut Score</div>
+    <div class="vital-charts">
+      <div class="chart box">
+        <div class="card-heading">Weight</div>
+          <hp-bar-chart
+          :chartdata="chartdata"
+          :options="options"/>
+      </div>
+      <div class="chart box">
+        <div class="card-heading">Blood Pressure</div>
+          <hp-bar-chart
+          :chartdata="chartdata"
+          :options="options"/>
+      </div>
+    </div>
   </div>
   <div class="pie-chart-container box">
       <div class="half-container">
