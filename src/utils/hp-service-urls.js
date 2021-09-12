@@ -1,6 +1,7 @@
 const serviceUrls = {
-  flights: 'https://tw-frontenders.firebaseio.com/advFlightSearch.json',
-  patient: 'patient/P1001'
+  patient: 'patient/P1002',
+  medication: 'medication/patient/P1002',
+  supplement: 'supplement/patient/P1002',
 };
 
 export default serviceUrls;

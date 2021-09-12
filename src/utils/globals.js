@@ -1,7 +1,7 @@
 import serviceUrls from './hp-service-urls';
 
 // const BASE_URL = window.apiHost;
-const PATIENT_PORT = 'http://34.132.195.252';
+const PATIENT_PORT = 'https://api.healthiyou.com';
 // const assetsSubPath = 'static/assets/';
 const API_PREFIX = 'api/v1';
 // const ACCESS_KEY = 'access_token';
@@ -19,6 +19,9 @@ const globals = {
     //   if (this.getCookie(ACCESS_KEY)) {
     //     this.headers.Authorization = `${'Bearer'} ${this.getCookie(ACCESS_KEY)}`;
     //   }
+      // this.headers = {
+      //   'Content-Type' : 'application/json',
+      // }
       return this.headers;
     },
     getRestUrl(endPoint) {

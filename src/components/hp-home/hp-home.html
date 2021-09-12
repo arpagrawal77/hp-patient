@@ -1,26 +1,26 @@
 <section class="hp-home">
   <h3 class="page-heading">Medical Report</h3>
-  <div class="patient-details">
+  <div class="patient-details" v-if="patientDetails">
     <div class="patient-image">
       <img/>
     </div>
-    <div class="patient-name">Sandy Smith</div>
+    <div class="patient-name">{{patientDetails.firstName}} {{patientDetails.lastName}}</div>
     <div class="other-details">
       <div class="age-gender">
         <span class="light-text">Age: </span>
-        <span class="dark-text">75</span>
+        <span class="dark-text">75  | </span>
         <span class="light-text">Gender: </span>
-        <span class="dark-text">Female</span>
+        <span class="dark-text">{{patientDetails.gender}}</span>
       </div>
       <div class="address">
         <span class="light-text">Address: </span>
         <span class="dark-text">4600 Rodeo Ln, Los Angeles, California(CA), 90016</span>
       </div>
       <div class="phone-email">
-        <span class="light-text">Age: </span>
-        <span class="dark-text">75</span>
-        <span class="light-text">Gender: </span>
-        <span class="dark-text">Female</span>
+        <span class="light-text">Phone: </span>
+        <span class="dark-text">{{patientDetails.mobile}}  | </span>
+        <span class="light-text">Email: </span>
+        <span class="dark-text">{{patientDetails.primaryEmail}}</span>
       </div>
     </div>
   </div>
@@ -53,7 +53,11 @@
     <div class="white-card box">
       <div class="card-heading">Medication</div>
       <div class="card-data">
-        <div class="medicines">
+        <div class="medicines" v-for="med in medications">
+          <p class="dark-text">{{med.medication}} {{med.dosage}}</p>
+          <p class="light-text">{{med.instructions}}</p>
+        </div>
+        <!-- <div class="medicines">
           <p class="dark-text">Protonix 40mg</p>
           <p class="light-text">Take 1 tablet from mouth</p>
         </div>
@@ -68,17 +72,17 @@
         <div class="medicines">
           <p class="dark-text">Protonix 40mg</p>
           <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="white-card box">
-      <div class="card-heading">Medication</div>
-      <div class="card-data">
-        <div class="medicines">
+      <div class="card-heading">Supplements</div>
+      <div class="card-data" v-if="supplements">
+        <div class="medicines" v-for="sup in supplements">
+          <p class="dark-text">{{sup.supplementName}}</p>
+          <p class="light-text">Take 1 tablet from mouth</p>
+        </div>
+        <!-- <div class="medicines">
           <p class="dark-text">Protonix 40mg</p>
           <p class="light-text">Take 1 tablet from mouth</p>
         </div>
@@ -93,11 +97,7 @@
         <div class="medicines">
           <p class="dark-text">Protonix 40mg</p>
           <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
+        </div> -->
       </div>
     </div><div class="white-card box">
       <div class="card-heading">Medication</div>

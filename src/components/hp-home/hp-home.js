@@ -9,6 +9,9 @@ export default {
   data() {
     return {
       patientService: new PatientService(),
+      patientDetails: {},
+      medications: [],
+      supplements: [],
       chartdata: {
         labels: ['18 Jul', '19 Jul', '20 Jul', '21 Jul', '22 Jul', '23 Jul'],
         datasets: [
@@ -67,13 +70,30 @@ export default {
   },
   mounted() {
     const config = {};
-    this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handlePatientResponseError)
+    this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handlePatientResponseError);
+    this.patientService.getMedicationDetails(config,this.handleMedicationResponse,this.handleMedicationResponseError);
+    this.patientService.getSupplimentDetails(config,this.handleSupplementResponse,this.handleSupplementResponseError);
   },
   methods: {
     handlePatientResponse(res) {
-      console.log(res.data.data);
+      // console.log(res.data.data);
+      this.patientDetails = res.data.data;
     },
     handlePatientResponseError(err) {
+      console.log(err);
+    },
+    handleMedicationResponse(res) {
+      this.medications = res.data.data.medications;
+      // console.log(this.medications);
+    },
+    handleMedicationResponseError(err) {
+      console.log(err);
+    },
+    handleSupplementResponse(res) {
+      console.log(res.data.data);
+      this.supplements = res.data.data.supplementDetails;
+    },
+    handleSupplementResponseError(err) {
       console.log(err);
     }
   },
