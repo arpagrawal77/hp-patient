@@ -31,7 +31,7 @@ export default {
 }
 body,
 #app {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: #fff;
 }
 

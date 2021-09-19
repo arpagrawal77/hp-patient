@@ -1,8 +1,10 @@
 <section class="hp-home">
+  <div v-if="dataLoaded">
   <h3 class="page-heading">Medical Report</h3>
   <div class="patient-details" v-if="patientDetails">
     <div class="patient-image">
-      <img src="../../assets/patient-image.png" height="100%" width="100%"/>
+      <!-- <img src="../../assets/patient-image.png" height="100%" width="100%"/> -->
+      <span class="initials">{{patientInitials}}</span>
     </div>
     <div class="patient-name">{{patientDetails.firstName}} {{patientDetails.lastName}}</div>
     <div class="other-details">
@@ -192,7 +194,7 @@
       </div>
   </div>
   <div class="vitals-container">
-    <div class="card-heading">Vitals and Gut Score</div>
+    <div class="card-heading">Vitals</div>
     <div class="vital-charts">
       <div class="chart box">
         <div class="card-heading">Weight</div>
@@ -208,6 +210,7 @@
       </div>
     </div>
   </div>
+  <div class="card-heading">Gut Scores</div>
   <div class="pie-chart-container box">
       <div class="half-container">
           <hp-pie-chart
@@ -229,91 +232,92 @@
               </div>
       </div>
     </div>
-  <div class="chart-container">
+  <div class="chart-container" v-if="dataLoaded">
     <div class="chart">
       <div class="card-heading">Body Mass Index</div>
         <hp-bar-chart
-        :chartdata="chartdata"
+        :chartdata="bmiChartData"
         :options="options"/>
     </div>
     <div class="chart">
-        <div class="card-heading">Carbohydrates</div>
+        <div class="card-heading">Carbohydrate Metabolism</div>
         <hp-bar-chart
-        :chartdata="chartdata"
+        :chartdata="carbohydrateMetabolismChartData"
         :options="options"/>
     </div>
     <div class="chart">
-        <div class="card-heading">Body Mass Index</div>
+        <div class="card-heading">Protein Metabolism</div>
           <hp-bar-chart
-          :chartdata="chartdata"
+          :chartdata="proteinMetabolismChartData"
           :options="options"/>
       </div>
       <div class="chart">
-          <div class="card-heading">Carbohydrates</div>
+          <div class="card-heading">Fat Metabolism</div>
           <hp-bar-chart
-          :chartdata="chartdata"
+          :chartdata="fatMetabolismChartData"
           :options="options"/>
       </div>
       <div class="chart">
-          <div class="card-heading">Body Mass Index</div>
+          <div class="card-heading">Lactose Intolerance</div>
             <hp-bar-chart
-            :chartdata="chartdata"
+            :chartdata="lactoseIntoleranceChartData"
             :options="options"/>
         </div>
         <div class="chart">
-            <div class="card-heading">Carbohydrates</div>
+            <div class="card-heading">Gluten Sensitivity</div>
             <hp-bar-chart
-            :chartdata="chartdata"
+            :chartdata="glutenSensitivityChartData"
             :options="options"/>
         </div>
         <div class="chart">
-            <div class="card-heading">Body Mass Index</div>
+            <div class="card-heading">Sugar Consumption</div>
               <hp-bar-chart
-              :chartdata="chartdata"
+              :chartdata="sugarConsumptionChartData"
               :options="options"/>
           </div>
           <div class="chart">
-              <div class="card-heading">Carbohydrates</div>
+              <div class="card-heading">Artificial Sweetener Damage</div>
               <hp-bar-chart
-              :chartdata="chartdata"
+              :chartdata="artificialSweetnerDamageChartData"
               :options="options"/>
           </div>
           <div class="chart">
-              <div class="card-heading">Body Mass Index</div>
+              <div class="card-heading">Probiotic Organisms</div>
                 <hp-bar-chart
-                :chartdata="chartdata"
+                :chartdata="probioticOrganismsChartData"
                 :options="options"/>
             </div>
             <div class="chart">
-                <div class="card-heading">Carbohydrates</div>
+                <div class="card-heading">Bowel Mobility</div>
                 <hp-bar-chart
-                :chartdata="chartdata"
+                :chartdata="bowelMobilityChartData"
                 :options="options"/>
             </div>
             <div class="chart">
-                <div class="card-heading">Body Mass Index</div>
+                <div class="card-heading">Antibiotic Damage</div>
                   <hp-bar-chart
-                  :chartdata="chartdata"
+                  :chartdata="antibioticDamageChartData"
                   :options="options"/>
               </div>
               <div class="chart">
-                  <div class="card-heading">Carbohydrates</div>
+                  <div class="card-heading">Autoimmune Index</div>
                   <hp-bar-chart
-                  :chartdata="chartdata"
+                  :chartdata="autoimmuneIndexChartData"
                   :options="options"/>
               </div>
               <div class="chart">
-                  <div class="card-heading">Body Mass Index</div>
+                  <div class="card-heading">Sleep Quality</div>
                     <hp-bar-chart
-                    :chartdata="chartdata"
+                    :chartdata="sleepQualityChartData"
                     :options="options"/>
                 </div>
                 <div class="chart">
-                    <div class="card-heading">Carbohydrates</div>
+                    <div class="card-heading">Proteobacteria Percentage</div>
                     <hp-bar-chart
-                    :chartdata="chartdata"
+                    :chartdata="proteobacteriaPercentageChartData"
                     :options="options"/>
                 </div>
   </div>
   </div>
+  <div class="no-data" v-else>Loading...</div>
 </section>
