@@ -27,6 +27,24 @@ class patientService extends RootService {
     config.url = globals.getRestUrl('goals');
     this.get(config, successCallback, errorCallback);
   }
+
+  getAllergyDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('allergy');
+    this.get(config, successCallback, errorCallback);
+  }
+
+  getDietDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('diet');
+    this.get(config, successCallback, errorCallback);
+  }
+  
+  getMicrobiomeDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('microbiome');
+    this.get(config, successCallback, errorCallback);
+  }
 }
 export {
     patientService as default,

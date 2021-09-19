@@ -13,6 +13,13 @@ export default {
       medications: [],
       supplements: [],
       goals: [],
+      allergies: [],
+      diet: {
+        breakfast: [],
+        lunch: [],
+        dinner: [],
+        liquids: [],
+      },
       chartdata: {
         labels: ['18 Jul', '19 Jul', '20 Jul', '21 Jul', '22 Jul', '23 Jul'],
         datasets: [
@@ -71,39 +78,54 @@ export default {
   },
   mounted() {
     const config = {};
-    this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handlePatientResponseError);
-    this.patientService.getMedicationDetails(config,this.handleMedicationResponse,this.handleMedicationResponseError);
-    this.patientService.getSupplimentDetails(config,this.handleSupplementResponse,this.handleSupplementResponseError);
-    this.patientService.getGoalsDetails(config,this.handleGoalsResponse,this.handleGoalsResponseError);
+    this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handleResponseError);
+    this.patientService.getMedicationDetails(config,this.handleMedicationResponse,this.handleResponseError);
+    this.patientService.getSupplimentDetails(config,this.handleSupplementResponse,this.handleResponseError);
+    this.patientService.getGoalsDetails(config,this.handleGoalsResponse,this.handleResponseError);
+    this.patientService.getAllergyDetails(config,this.handleAllergyResponse,this.handleResponseError);
+    this.patientService.getDietDetails(config,this.handleDietResponse,this.handleResponseError);
+    this.patientService.getMicrobiomeDetails(config,this.handleMicrobiomeResponse,this.handleResponseError);
   },
   methods: {
     handlePatientResponse(res) {
       // console.log(res.data.data);
       this.patientDetails = res.data.data;
     },
-    handlePatientResponseError(err) {
-      console.log(err);
-    },
+    
     handleMedicationResponse(res) {
       this.medications = res.data.data.medications;
       // console.log(this.medications);
     },
-    handleMedicationResponseError(err) {
-      console.log(err);
-    },
+    
     handleSupplementResponse(res) {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       this.supplements = res.data.data.supplementDetails;
     },
-    handleSupplementResponseError(err) {
-      console.log(err);
-    },
+    
     handleGoalsResponse(res) {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       this.goals = res?.data?.data?.goals;
     },
-    handleGoalsResponseError(err) {
+    
+    handleAllergyResponse(res) {
+      this.allergies = res?.data?.data?.allergies;
+      // console.log(this.allergies);
+    },
+    
+    handleDietResponse(res) {
+      // console.log(res?.data?.data?.data);
+      this.diet.breakfast = res?.data?.data?.data[0].breakfast.split(",");
+      this.diet.lunch = res?.data?.data?.data[0].lunch.split(",");
+      this.diet.dinner = res?.data?.data?.data[0].dinner.split(",");
+      // console.log(this.diet);
+    },
+
+    handleMicrobiomeResponse(res) {
+      console.log(res.data.data.data);
+    },
+
+    handleResponseError(err) {
       console.log(err);
-    }
+    },
   },
 };

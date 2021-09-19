@@ -32,8 +32,6 @@
       <div class="card-heading">Goals</div>
       <div class="card-text">
         <p v-for="goal in goals">{{goal.goal}}</p>
-        <!-- <p>I want to Lower my bp on priority</p>
-        <p>I want to dance with my daughter on her wedding day</p> -->
       </div>
     </div>
     <div class="top-card">
@@ -57,22 +55,6 @@
           <p class="dark-text">{{med.medication}} {{med.dosage}}</p>
           <p class="light-text">{{med.instructions}}</p>
         </div>
-        <!-- <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div> -->
       </div>
     </div>
     <div class="white-card box">
@@ -82,45 +64,13 @@
           <p class="dark-text">{{sup.supplementName}}</p>
           <p class="light-text">Take 1 tablet from mouth</p>
         </div>
-        <!-- <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div> -->
       </div>
     </div><div class="white-card box">
-      <div class="card-heading">Medication</div>
+      <div class="card-heading">Food Sensitivities</div>
       <div class="card-data">
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
-        </div>
-        <div class="medicines">
-          <p class="dark-text">Protonix 40mg</p>
-          <p class="light-text">Take 1 tablet from mouth</p>
+        <div class="medicines" v-for="alg in allergies">
+          <p class="dark-text">{{alg.name}}</p>
+          <p class="light-text">{{alg.startDate}}</p>
         </div>
       </div>
     </div>
@@ -149,10 +99,10 @@
         <div class="list-heading dark-text">Breakfast</div>
         <div class="list-text">
           <ul>
+            <li class="light-text" v-for="meal in diet.breakfast">{{meal}}</li>
+            <!-- <li class="light-text">2 Toast</li>
             <li class="light-text">2 Eggs</li>
-            <li class="light-text">2 Toast</li>
-            <li class="light-text">2 Eggs</li>
-            <li class="light-text">1 cup Tea</li>
+            <li class="light-text">1 cup Tea</li> -->
           </ul>
         </div>
       </div>
@@ -160,10 +110,11 @@
           <div class="list-heading dark-text">Lunch</div>
           <div class="list-text">
             <ul>
-              <li class="light-text">2 Eggs</li>
+              <li class="light-text" v-for="meal in diet.lunch">{{meal}}</li>
+              <!-- <li class="light-text">2 Eggs</li>
               <li class="light-text">2 Toast</li>
               <li class="light-text">2 Eggs</li>
-              <li class="light-text">1 cup Tea</li>
+              <li class="light-text">1 cup Tea</li> -->
             </ul>
           </div>
         </div>
@@ -171,10 +122,11 @@
             <div class="list-heading dark-text">Dinner</div>
             <div class="list-text">
               <ul>
-                <li class="light-text">2 Eggs</li>
+                <li class="light-text" v-for="meal in diet.dinner">{{meal}}</li>
+                <!-- <li class="light-text">2 Eggs</li>
                 <li class="light-text">2 Toast</li>
                 <li class="light-text">2 Eggs</li>
-                <li class="light-text">1 cup Tea</li>
+                <li class="light-text">1 cup Tea</li> -->
               </ul>
             </div>
           </div>
