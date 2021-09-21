@@ -14,6 +14,7 @@
   .patient-name {
     padding: 0 20px;
     font-size: 1.5em;
+    color: #d2743e;
   }
   
   .patient-image {
@@ -26,10 +27,10 @@
 
     .initials {
       background: #f9ece5;
-      color: #000000;
       border-radius: 50%;
       font-size: 2.5em;
       padding: 12px;
+      color: #d2743e;
     }
   }
   .top-card-container {
@@ -44,11 +45,11 @@
         padding: 24px;
         flex-basis: 46%;
         border-radius: 2%;
-        min-height: 250px;
+        // min-height: 250px;
         margin-right: 16px;
-        .card-image {
-          flex-basis: 34%;
-        }
+        // .card-image {
+        //   flex-basis: 34%;
+        // }
         .card-text {
           p {
             margin-bottom: 16px;
@@ -68,6 +69,12 @@
       .card-data {
         .medicines {
           margin-bottom: 16px;
+          .food-senstivity {
+            margin-left: -20px;
+            li {
+              padding-bottom: 16px;
+            }
+          }
         }
       }
     }
@@ -113,6 +120,10 @@
       justify-content: space-between;
     }
 
+    .pb-8 {
+      padding-bottom: 8px;
+    }
+
     .recommended-diet-container {
       margin-bottom: 56px;
       ul {
@@ -136,12 +147,18 @@
       .half-container {
         flex-basis: 50%;
         .circular-data {
-          padding: 48px;
+          padding: 36px;
           .circled-number {
-            padding: 32px;
-            border: 1px solid;
+            padding: 24px;
+            font-size: 32px;
+            background: #F9ECE5;
             margin: 20px;
             border-radius: 50%;
+            color: #D2743E;
+          }
+          .circiled-text {
+            color: #D2743E;
+            font-size: 22px;
           }
         }
       }
@@ -158,7 +175,7 @@
           display: flex;
           margin-bottom: 24px;
           .list-heading {
-            flex-basis: 20%;
+            flex-basis: 33.33%;
           }
           ul {
             list-style: none;
@@ -233,13 +250,16 @@
         flex-direction: column;
         .half-container {
           flex-basis: auto;
-          margin: 0 32px;
           
           .circular-data {
             padding: 24px;
             .circled-number {
-              padding: 18px;
-              margin: 4px;
+              padding: 16px;
+              margin: 8px;
+              font-size: 24px;
+            }
+            .circiled-text {
+              font-size: 16px;
             }
           }
         }

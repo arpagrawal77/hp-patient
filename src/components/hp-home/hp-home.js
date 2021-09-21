@@ -10,12 +10,16 @@ export default {
     return {
       patientService: new PatientService(),
       patientInitials: '',
+      patientAge: 50,
       patientDetails: {},
       medications: [],
       supplements: [],
       goals: [],
+      tasks: [],
       allergies: [],
       microbiome: [],
+      foodSensitivities: [],
+      recommendedDiet: '',
       dataLoaded: false,
       diet: {
         breakfast: [],
@@ -74,7 +78,7 @@ export default {
         maintainAspectRatio: false
       },
       pieChartData : {
-        labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+        labels: ['Actinobacteria', 'Proteobacteria', 'Firmicutes', 'Bacteroidetes'],
         datasets: [
           {
             backgroundColor: [
@@ -300,13 +304,15 @@ export default {
     this.patientService.getAllergyDetails(config,this.handleAllergyResponse,this.handleResponseError);
     this.patientService.getDietDetails(config,this.handleDietResponse,this.handleResponseError);
     this.patientService.getMicrobiomeDetails(config,this.handleMicrobiomeResponse,this.handleResponseError);
+    this.patientService.getDnaResultDetails(config,this.handleDnaResultResponse,this.handleResponseError);
+    this.patientService.getTaskDetails(config,this.handleTaskResponse,this.handleResponseError);
   },
   methods: {
     handlePatientResponse(res) {
       // console.log(res.data.data);
       this.patientDetails = res.data.data;
       this.patientInitials = this.getUserInitials(this.patientDetails.firstName, this.patientDetails.lastName);
-      console.log(this.patientInitials);
+      this.patientAge = this.getAge(this.patientDetails.dateOfBirth);
     },
     
     handleMedicationResponse(res) {
@@ -325,8 +331,8 @@ export default {
     },
     
     handleAllergyResponse(res) {
-      this.allergies = res?.data?.data?.allergies;
-      // console.log(this.allergies);
+      // this.allergies = res?.data?.data?.allergies;
+      console.log(res);
     },
     
     handleDietResponse(res) {
@@ -356,12 +362,28 @@ export default {
       this.dataLoaded = true;
     },
 
+    handleDnaResultResponse(res) {
+      console.log(res.data.data);
+      this.foodSensitivities = res?.data?.data?.DNAResultDetails[0]?.foodSensitivities.split(',');
+      this.recommendedDiet = res?.data?.data?.DNAResultDetails[0]?.recommendedDiet;
+    },
+
+    handleTaskResponse(res) {
+      this.tasks = res?.data?.data?.tasks;
+    },
+
     makeChartDataSet(key) {
       return this.microbiome.map(item => item[key]);
     },
 
     getUserInitials(fname, lname) {
       return fname.charAt(0)+lname.charAt(0);
+    },
+
+    getAge(year) {
+      let currentYear = new Date().getFullYear();
+      let birthYear = new Date(year).getFullYear();
+      return currentYear - birthYear;
     },
 
     handleResponseError(err) {

@@ -42,9 +42,9 @@
       </div>
       <div class="card-heading">Daily Reminders</div>
       <div class="card-text">
-        <p>Excercise for 30 mins a day</p>
-        <p>Meditate every morning and night</p>
-        <p>Drink atleast 3 litres of water</p>
+        <p v-for="task in tasks">{{task.description}}</p>
+        <!-- <p>Meditate every morning and night</p>
+        <p>Drink atleast 3 litres of water</p> -->
       </div>
     </div>
   </div>
@@ -70,16 +70,18 @@
     </div><div class="white-card box">
       <div class="card-heading">Food Sensitivities</div>
       <div class="card-data">
-        <div class="medicines" v-for="alg in allergies">
-          <p class="dark-text">{{alg.name}}</p>
-          <p class="light-text">{{alg.startDate}}</p>
+        <div class="medicines">
+          <ul class="food-senstivity">
+            <li v-for="fs in foodSensitivities">{{fs}}</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="recommended-diet-container box">
+  <div class="recommended-diet-container box" v-if="recommendedDiet != ''">
       <div class="card-heading">Recommended Diet</div>
-      <ul>
+      <div>{{recommendedDiet}}</div>
+      <!-- <ul>
           <li>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</li>
           <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</li>
           <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</li>
@@ -92,7 +94,7 @@
           <li>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</li>
           <li>Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</li>
           <li>Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.</li>
-       </ul>
+       </ul> -->
     </div>
   <div class="meals-container">
     <div class="meals box">
@@ -112,7 +114,7 @@
           <div class="list-heading dark-text">Lunch</div>
           <div class="list-text">
             <ul>
-              <li class="light-text" v-for="meal in diet.lunch">{{meal}}</li>
+              <li class="light-text pb-8" v-for="meal in diet.lunch">{{meal}}</li>
               <!-- <li class="light-text">2 Eggs</li>
               <li class="light-text">2 Toast</li>
               <li class="light-text">2 Eggs</li>
@@ -124,7 +126,7 @@
             <div class="list-heading dark-text">Dinner</div>
             <div class="list-text">
               <ul>
-                <li class="light-text" v-for="meal in diet.dinner">{{meal}}</li>
+                <li class="light-text pb-8" v-for="meal in diet.dinner">{{meal}}</li>
                 <!-- <li class="light-text">2 Eggs</li>
                 <li class="light-text">2 Toast</li>
                 <li class="light-text">2 Eggs</li>
@@ -136,58 +138,58 @@
     <div class="meals box">
         <div class="card-heading">Liquids</div>
         <div class="list-container">
-          <div class="list-heading dark-text">Soda</div>
+          <div class="list-heading dark-text">Water</div>
           <div class="list-text">
             <ul>
-              <li class="light-text">2 Glasses</li>
+              <li class="light-text">5 glasses</li>
             </ul>
           </div>
         </div>
         <div class="list-container">
-            <div class="list-heading dark-text">Water</div>
+            <div class="list-heading dark-text">Infused Water</div>
             <div class="list-text">
               <ul>
-                <li class="light-text">3 liter</li>
+                <li class="light-text">0 glasses</li>
               </ul>
             </div>
           </div>
           <div class="list-container">
-              <div class="list-heading dark-text">Fresh Juice</div>
+              <div class="list-heading dark-text">Fruit Juice</div>
               <div class="list-text">
                 <ul>
-                  <li class="light-text">2 glasses</li>
+                  <li class="light-text">1 glass</li>
                 </ul>
               </div>
             </div>
             <div class="list-container">
-                <div class="list-heading dark-text">Fresh Juice</div>
+                <div class="list-heading dark-text">Soda</div>
                 <div class="list-text">
                   <ul>
-                    <li class="light-text">2 glasses</li>
+                    <li class="light-text">1 glass</li>
                   </ul>
                 </div>
               </div>
               <div class="list-container">
-                  <div class="list-heading dark-text">Fresh Juice</div>
+                  <div class="list-heading dark-text">Alcohol</div>
                   <div class="list-text">
                     <ul>
-                      <li class="light-text">2 glasses</li>
+                      <li class="light-text">1 glass</li>
                     </ul>
                   </div>
                 </div>
                 <div class="list-container">
-                    <div class="list-heading dark-text">Fresh Juice</div>
+                    <div class="list-heading dark-text">Tea</div>
                     <div class="list-text">
                       <ul>
-                        <li class="light-text">2 glasses</li>
+                        <li class="light-text">3 cups</li>
                       </ul>
                     </div>
                   </div>
                   <div class="list-container">
-                      <div class="list-heading dark-text">Fresh Juice</div>
+                      <div class="list-heading dark-text">Coffee</div>
                       <div class="list-text">
                         <ul>
-                          <li class="light-text">2 glasses</li>
+                          <li class="light-text">3 cups</li>
                         </ul>
                       </div>
                     </div>
@@ -219,16 +221,16 @@
       </div>
       <div class="half-container">
           <div class="circular-data">
-            <span class="circled-number">97</span>
-            <span class="circiled-text">Physical Age</span>
+            <span class="circled-number">{{microbiome[0].microbiomeAge}}</span>
+            <span class="circiled-text">Microbiome Age</span>
           </div>
           <div class="circular-data">
-              <span class="circled-number">97</span>
+              <span class="circled-number">{{patientAge}}</span>
               <span class="circiled-text">Physical Age</span>
             </div>
             <div class="circular-data">
-                <span class="circled-number">97</span>
-                <span class="circiled-text">Physical Age</span>
+                <span class="circled-number">{{microbiome[0].microbiomeDiversity}}</span>
+                <span class="circiled-text">Microbiome Diversity</span>
               </div>
       </div>
     </div>

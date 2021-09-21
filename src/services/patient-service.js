@@ -45,6 +45,18 @@ class patientService extends RootService {
     config.url = globals.getRestUrl('microbiome');
     this.get(config, successCallback, errorCallback);
   }
+
+  getDnaResultDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('dnaResult');
+    this.get(config, successCallback, errorCallback);
+  }
+
+  getTaskDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('task');
+    this.get(config, successCallback, errorCallback);
+  }
 }
 export {
     patientService as default,
