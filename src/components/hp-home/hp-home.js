@@ -43,6 +43,7 @@ export default {
         autoimmuneIndexData: [],
         sleepQualityData: [],
         proteobacteriaPercentageData: [],
+        pieChartDataSet: [],
       },
       options: {
         legend: {
@@ -77,20 +78,6 @@ export default {
         responsive: true,
         maintainAspectRatio: false
       },
-      pieChartData : {
-        labels: ['Actinobacteria', 'Proteobacteria', 'Firmicutes', 'Bacteroidetes'],
-        datasets: [
-          {
-            backgroundColor: [
-              '#CEBFB2',
-              '#E5AE61',
-              '#F5D1B2',
-              '#D2743E'
-            ],
-            data: [20, 30, 40, 10]
-          }
-        ]
-      },
       pieChartOptions : {
         responsive: true, 
         maintainAspectRatio: false
@@ -107,6 +94,23 @@ export default {
             label: 'Data one',
             backgroundColor: '#E5AE61',
             data: [20, 23, 0, 25]
+          }
+        ]
+      }
+    },
+
+    pieChartData() {
+      return {
+        labels: ['Actinobacteria', 'Proteobacteria', 'Firmicutes', 'Bacteroidetes'],
+        datasets: [
+          {
+            backgroundColor: [
+              '#CEBFB2',
+              '#E5AE61',
+              '#F5D1B2',
+              '#D2743E'
+            ],
+            data: this.pieChartDataSet
           }
         ]
       }
@@ -359,6 +363,8 @@ export default {
       this.chartApiData.autoimmuneIndexData = this.makeChartDataSet('autoimmuneIndex');
       this.chartApiData.sleepQualityData = this.makeChartDataSet('sleepQuality');
       this.chartApiData.proteobacteriaPercentageData = this.makeChartDataSet('proteobacteriaPercentage');
+
+      this.pieChartDataSet = [this.microbiome[0]?.actinobacteriaPercentage, this.microbiome[0]?.proteobacteriaPercentage, this.microbiome[0]?.firmicutesPercentage, this.microbiome[0]?.bacteroidetesPercentage];
       this.dataLoaded = true;
     },
 
