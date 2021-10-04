@@ -42,7 +42,7 @@ body,
   position: relative;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 48px;
+  padding: 5rem 6rem;
   // padding-bottom: 80px;
   @media only screen and (max-width: 768px) {
     padding: 24px;

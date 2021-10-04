@@ -1,7 +1,8 @@
 .hp-home {
   .page-heading{
-    font-weight: 500;
-    margin-bottom: 30px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: @black;
   }
   .patient-details{
     display: flex;
@@ -13,8 +14,15 @@
   
   .patient-name {
     padding: 0 20px;
-    font-size: 1.5em;
-    color: #d2743e;
+    font-weight: 800;
+    font-size: 2.5em;
+    // color: #d2743e;
+  }
+
+  .other-details {
+    .age-gender, .address {
+      margin-bottom: 4px;
+    }
   }
   
   .patient-image {
@@ -29,7 +37,7 @@
       background: #f9ece5;
       border-radius: 50%;
       font-size: 2.5em;
-      padding: 12px;
+      padding: 30px;
       color: #d2743e;
     }
   }
@@ -42,11 +50,12 @@
         display: flex;
         flex-direction: column;
         background: #F9ECE5;
-        padding: 24px;
-        flex-basis: 46%;
+        // padding: 24px;
+        padding: 2%;
+        flex-basis: 45%;
         border-radius: 2%;
         // min-height: 250px;
-        margin-right: 16px;
+        // margin-right: 16px;
         // .card-image {
         //   flex-basis: 34%;
         // }
@@ -55,6 +64,16 @@
             margin-bottom: 16px;
           }
         }
+
+        
+        .card-image {
+          width: 40%;
+          margin: 40px 0;
+            .top-card-image {
+              width: 100%;
+              height: auto;
+            }
+        }
       }
     }
     .white-card-container {
@@ -62,9 +81,10 @@
       justify-content: space-between;
       margin-bottom: 48px;
       .white-card {
-        flex-basis: 30%;
-        padding: 32px;
-        margin-right: 18px;
+        flex-basis: 27%;
+        // padding: 32px;
+        padding: 2.5%;
+        // margin-right: 18px;
       }
       .card-data {
         .medicines {
@@ -79,17 +99,30 @@
       }
     }
     .card-heading {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: 30px;
+      font-weight: 600;
       margin-bottom: 24px;
     }
 
+    .card-text {
+      font-size: 20px;
+      font-weight: 400;
+    }
+
     .dark-text {
-      font-weight: 500;
+      font-weight:400;
+      font-size: 15px;
     }
 
     .light-text {
       font-weight: 100;
+      color: @fs-label;
+    }
+
+    .food-text {
+      font-weight: 400;
+      font-size: 15px;
+      color: @black;
     }
     
     .chart-container {
@@ -102,7 +135,7 @@
       max-width: 40%;
       min-width: 40%;
       flex: 1;
-      margin-right: 24px;
+      // margin-right: 24px;
       margin-bottom: 104px;
     }
 
@@ -113,6 +146,12 @@
       border-radius: 5px;
       border: 2px solid #f7f7f7;
       box-shadow: 1px 1px 1px 1px #00000014;
+    }
+
+    .vitals-card-heading {
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 24px;
     }
 
     .vital-charts {
@@ -142,15 +181,16 @@
     .pie-chart-container {
       display: flex;
       padding: 24px;
-      align-items: center;
       margin-bottom: 56px;
       .half-container {
         flex-basis: 50%;
         .circular-data {
-          padding: 36px;
+          display: flex;
+          align-items: center;
           .circled-number {
             padding: 24px;
-            font-size: 32px;
+            font-size: 56px;
+            font-weight: 700;
             background: #F9ECE5;
             margin: 20px;
             border-radius: 50%;
@@ -158,7 +198,8 @@
           }
           .circiled-text {
             color: #D2743E;
-            font-size: 22px;
+            font-size: 30px;
+            font-weight: 400px;
           }
         }
       }
@@ -167,10 +208,11 @@
     .meals-container {
       display: flex;
       margin-bottom: 56px;
+      justify-content: space-between;
       .meals.box {
-        padding: 24px 32px;
-        flex-basis: 48%;
-        margin-right: 24px;
+        padding: 2% 2.5%;
+        flex-basis: 43.7%;
+        // margin-right: 24px;
         .list-container {
           display: flex;
           margin-bottom: 24px;
@@ -193,16 +235,17 @@
           flex: 1;
           flex-basis: 50%;
           padding: 0 12px;
+          font-size: 1.5em;
         }
         .other-details {
-          margin-top: 16px;
+          margin-top: 24px;
         }
       }
 
       .patient-image {
         .initials {
           font-size: 1.5em;
-          padding: 8px;
+          padding: 12px;
         }
       }
 
@@ -210,6 +253,7 @@
         flex-direction: column;
         margin-top: 0;
         .top-card {
+          padding: 24px;
           margin-top: 32px;
           margin-right: 0;
           min-height: max-content;
@@ -219,6 +263,7 @@
       .white-card-container {
         flex-direction: column;
         .white-card {
+          padding: 32px;
           flex-basis: 100%;
           margin-right: 0;
           margin-top: 24px;

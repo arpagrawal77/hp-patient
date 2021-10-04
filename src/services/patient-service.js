@@ -57,6 +57,18 @@ class patientService extends RootService {
     config.url = globals.getRestUrl('task');
     this.get(config, successCallback, errorCallback);
   }
+
+  getWeightDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('weight');
+    this.get(config, successCallback, errorCallback);
+  }
+
+  getBPDetails(requestConfig, successCallback, errorCallback) {
+    const config = requestConfig;
+    config.url = globals.getRestUrl('bloodPressure');
+    this.get(config, successCallback, errorCallback);
+  }
 }
 export {
     patientService as default,

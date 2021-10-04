@@ -21,13 +21,22 @@ export default {
       foodSensitivities: [],
       recommendedDiet: '',
       dataLoaded: false,
+      rpm: {
+        weight: [],
+        bloodPressure: {
+          systolic: [],
+          diastolic: [],
+        }
+      },
       diet: {
         breakfast: [],
         lunch: [],
         dinner: [],
         liquids: [],
       },
-      chartLabels: ['18 Jul', '19 Jul', '20 Jul', '21 Jul'],
+      chartLabels: [],
+      weightChartLabel: [],
+      bpChartLabel: [],
       chartApiData: {
         bmiData: [],
         carbohydrateMetabolismData: [],
@@ -298,6 +307,37 @@ export default {
       }
     },
 
+    weightChartData() {
+      return {
+        labels: this.weightChartLabel,
+        datasets: [
+          {
+            label: 'BMI',
+            backgroundColor: '#E5AE61',
+            data: this.rpm.weight,
+          }
+        ]
+      }
+    },
+
+    bpChartData() {
+      return {
+        labels: this.bpChartLabel,
+        datasets: [
+          {
+            label: 'BMI',
+            backgroundColor: '#E5AE61',
+            data: this.rpm.bloodPressure.systolic,
+          },
+          {
+            label: 'BMI',
+            backgroundColor: '#ffb200',
+            data: this.rpm.bloodPressure.diastolic,
+          }
+        ]
+      }
+    },
+
   },
   mounted() {
     const config = {};
@@ -305,11 +345,12 @@ export default {
     this.patientService.getMedicationDetails(config,this.handleMedicationResponse,this.handleResponseError);
     this.patientService.getSupplimentDetails(config,this.handleSupplementResponse,this.handleResponseError);
     this.patientService.getGoalsDetails(config,this.handleGoalsResponse,this.handleResponseError);
-    this.patientService.getAllergyDetails(config,this.handleAllergyResponse,this.handleResponseError);
+    // this.patientService.getAllergyDetails(config,this.handleAllergyResponse,this.handleResponseError);
     this.patientService.getDietDetails(config,this.handleDietResponse,this.handleResponseError);
-    this.patientService.getMicrobiomeDetails(config,this.handleMicrobiomeResponse,this.handleResponseError);
+    // this.patientService.getMicrobiomeDetails(config,this.handleMicrobiomeResponse,this.handleResponseError);
     this.patientService.getDnaResultDetails(config,this.handleDnaResultResponse,this.handleResponseError);
     this.patientService.getTaskDetails(config,this.handleTaskResponse,this.handleResponseError);
+    this.patientService.getWeightDetails(config,this.handleWeightResponse,this.handleResponseError);
   },
   methods: {
     handlePatientResponse(res) {
@@ -338,31 +379,63 @@ export default {
       // this.allergies = res?.data?.data?.allergies;
       console.log(res);
     },
+
+    handleBPResponse(res) {
+      let bPRes = res?.data?.data?.data;
+      let config = {};
+      this.bpChartLabel = this.makeChartDataSet(bPRes, 'recorded_at').map(item => this.convertDateStringToDate(item));
+      this.rpm.bloodPressure.systolic = this.makeChartDataSet(bPRes, 'systolic');
+      this.rpm.bloodPressure.diastolic = this.makeChartDataSet(bPRes, 'diastolic');
+      this.patientService.getMicrobiomeDetails(config,this.handleMicrobiomeResponse,this.handleResponseError);
+      // this.dataLoaded = true;
+    },
+
+    handleWeightResponse(res) {
+      let weightRes = res?.data?.data?.data;
+      let config = {};
+      this.weightChartLabel = this.makeChartDataSet(weightRes, 'recorded_at').map(item => this.convertDateStringToDate(item));
+      this.rpm.weight = this.makeChartDataSet(weightRes, 'weight');
+      this.patientService.getBPDetails(config,this.handleBPResponse,this.handleResponseError);
+      // this.dataLoaded = true;
+    },
     
     handleDietResponse(res) {
       // console.log(res?.data?.data?.data);
       this.diet.breakfast = res?.data?.data?.data[0].breakfast.split(",");
       this.diet.lunch = res?.data?.data?.data[0].lunch.split(",");
       this.diet.dinner = res?.data?.data?.data[0].dinner.split(",");
+      this.diet.liquid = res?.data?.data?.data[0];
       // console.log(this.diet);
+    },
+
+    convertDateStringToDate(dateStr) {
+      //  Convert a string like '2020-10-04T00:00:00' into '4/Oct/2020'
+      let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      let date = new Date(dateStr);
+      let str = date.getDate()
+                  + '-' + months[date.getMonth()]
+      return str;
     },
 
     handleMicrobiomeResponse(res) {
       this.microbiome = res.data.data.data;
-      this.chartApiData.bmiData = this.makeChartDataSet('bmi');
-      this.chartApiData.carbohydrateMetabolismData = this.makeChartDataSet('carbohydrateMetabolism');
-      this.chartApiData.proteinMetabolismData = this.makeChartDataSet('proteinMetabolism');
-      this.chartApiData.fatMetabolismData = this.makeChartDataSet('fatMetabolism');
-      this.chartApiData.lactoseIntoleranceData = this.makeChartDataSet('lactoseIntolerance');
-      this.chartApiData.glutenSensitivityData = this.makeChartDataSet('glutenSensitivity');
-      this.chartApiData.sugarConsumptionData = this.makeChartDataSet('sugarConsumption');
-      this.chartApiData.artificialSweetnerDamageData = this.makeChartDataSet('artificialSweetnerDamage');
-      this.chartApiData.probioticOrganismsData = this.makeChartDataSet('probioticOrganisms');
-      this.chartApiData.bowelMobilityData = this.makeChartDataSet('bowelMobility');
-      this.chartApiData.antibioticDamageData = this.makeChartDataSet('antibioticDamage');
-      this.chartApiData.autoimmuneIndexData = this.makeChartDataSet('autoimmuneIndex');
-      this.chartApiData.sleepQualityData = this.makeChartDataSet('sleepQuality');
-      this.chartApiData.proteobacteriaPercentageData = this.makeChartDataSet('proteobacteriaPercentage');
+
+      this.chartLabels = this.makeChartDataSet(this.microbiome, 'recorded_at').map(item => this.convertDateStringToDate(item));
+
+      this.chartApiData.bmiData = this.makeChartDataSet(this.microbiome, 'bmi');
+      this.chartApiData.carbohydrateMetabolismData = this.makeChartDataSet(this.microbiome, 'carbohydrateMetabolism');
+      this.chartApiData.proteinMetabolismData = this.makeChartDataSet(this.microbiome, 'proteinMetabolism');
+      this.chartApiData.fatMetabolismData = this.makeChartDataSet(this.microbiome, 'fatMetabolism');
+      this.chartApiData.lactoseIntoleranceData = this.makeChartDataSet(this.microbiome, 'lactoseIntolerance');
+      this.chartApiData.glutenSensitivityData = this.makeChartDataSet(this.microbiome, 'glutenSensitivity');
+      this.chartApiData.sugarConsumptionData = this.makeChartDataSet(this.microbiome, 'sugarConsumption');
+      this.chartApiData.artificialSweetnerDamageData = this.makeChartDataSet(this.microbiome, 'artificialSweetnerDamage');
+      this.chartApiData.probioticOrganismsData = this.makeChartDataSet(this.microbiome, 'probioticOrganisms');
+      this.chartApiData.bowelMobilityData = this.makeChartDataSet(this.microbiome, 'bowelMobility');
+      this.chartApiData.antibioticDamageData = this.makeChartDataSet(this.microbiome, 'antibioticDamage');
+      this.chartApiData.autoimmuneIndexData = this.makeChartDataSet(this.microbiome, 'autoimmuneIndex');
+      this.chartApiData.sleepQualityData = this.makeChartDataSet(this.microbiome, 'sleepQuality');
+      this.chartApiData.proteobacteriaPercentageData = this.makeChartDataSet(this.microbiome, 'proteobacteriaPercentage');
 
       this.pieChartDataSet = [this.microbiome[0]?.actinobacteriaPercentage, this.microbiome[0]?.proteobacteriaPercentage, this.microbiome[0]?.firmicutesPercentage, this.microbiome[0]?.bacteroidetesPercentage];
       this.dataLoaded = true;
@@ -378,8 +451,8 @@ export default {
       this.tasks = res?.data?.data?.tasks;
     },
 
-    makeChartDataSet(key) {
-      return this.microbiome.map(item => item[key]);
+    makeChartDataSet(dataSet, key) {
+      return dataSet.map(item => item[key]);
     },
 
     getUserInitials(fname, lname) {

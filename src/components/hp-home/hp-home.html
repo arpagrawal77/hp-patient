@@ -1,6 +1,6 @@
 <section class="hp-home">
   <div v-if="dataLoaded">
-  <h3 class="page-heading">Medical Report</h3>
+  <h1 class="page-heading">Medical Report</h1>
   <div class="patient-details" v-if="patientDetails">
     <div class="patient-image">
       <!-- <img src="../../assets/patient-image.png" height="100%" width="100%"/> -->
@@ -10,13 +10,13 @@
     <div class="other-details">
       <div class="age-gender">
         <span class="light-text">Age: </span>
-        <span class="dark-text">75  | </span>
+        <span class="dark-text">{{patientAge}}  | </span>
         <span class="light-text">Gender: </span>
         <span class="dark-text">{{patientDetails.gender}}</span>
       </div>
       <div class="address">
         <span class="light-text">Address: </span>
-        <span class="dark-text">4600 Rodeo Ln, Los Angeles, California(CA), 90016</span>
+        <span class="dark-text">{{patientDetails.address}}</span>
       </div>
       <div class="phone-email">
         <span class="light-text">Phone: </span>
@@ -29,7 +29,7 @@
   <div class="top-card-container">
     <div class="top-card">
       <div class="card-image">
-        <img/>
+        <img class="top-card-image" src="@/assets/Goals.png" alt="goals-image"/>
       </div>
       <div class="card-heading">Goals</div>
       <div class="card-text">
@@ -38,7 +38,7 @@
     </div>
     <div class="top-card">
       <div class="card-image">
-        <img/>
+        <img class="top-card-image" src="@/assets/Daily_Reminders.png" alt="tasks-image"/>
       </div>
       <div class="card-heading">Daily Reminders</div>
       <div class="card-text">
@@ -103,7 +103,7 @@
         <div class="list-heading dark-text">Breakfast</div>
         <div class="list-text">
           <ul>
-            <li class="light-text" v-for="meal in diet.breakfast">{{meal}}</li>
+            <li class="food-text" v-for="meal in diet.breakfast">{{meal}}</li>
             <!-- <li class="light-text">2 Toast</li>
             <li class="light-text">2 Eggs</li>
             <li class="light-text">1 cup Tea</li> -->
@@ -114,7 +114,7 @@
           <div class="list-heading dark-text">Lunch</div>
           <div class="list-text">
             <ul>
-              <li class="light-text pb-8" v-for="meal in diet.lunch">{{meal}}</li>
+              <li class="food-text pb-8" v-for="meal in diet.lunch">{{meal}}</li>
               <!-- <li class="light-text">2 Eggs</li>
               <li class="light-text">2 Toast</li>
               <li class="light-text">2 Eggs</li>
@@ -126,7 +126,7 @@
             <div class="list-heading dark-text">Dinner</div>
             <div class="list-text">
               <ul>
-                <li class="light-text pb-8" v-for="meal in diet.dinner">{{meal}}</li>
+                <li class="food-text pb-8" v-for="meal in diet.dinner">{{meal}}</li>
                 <!-- <li class="light-text">2 Eggs</li>
                 <li class="light-text">2 Toast</li>
                 <li class="light-text">2 Eggs</li>
@@ -141,7 +141,7 @@
           <div class="list-heading dark-text">Water</div>
           <div class="list-text">
             <ul>
-              <li class="light-text">5 glasses</li>
+              <li class="food-text">{{diet.liquid.numGlassesWater || 0}} glasses</li>
             </ul>
           </div>
         </div>
@@ -149,7 +149,7 @@
             <div class="list-heading dark-text">Infused Water</div>
             <div class="list-text">
               <ul>
-                <li class="light-text">0 glasses</li>
+                <li class="food-text">{{diet.liquid.numGlassesInfusedWater || 0}} glasses</li>
               </ul>
             </div>
           </div>
@@ -157,7 +157,7 @@
               <div class="list-heading dark-text">Fruit Juice</div>
               <div class="list-text">
                 <ul>
-                  <li class="light-text">1 glass</li>
+                  <li class="food-text">{{diet.liquid.numGlassesFruitJuice || 0}} glass</li>
                 </ul>
               </div>
             </div>
@@ -165,7 +165,7 @@
                 <div class="list-heading dark-text">Soda</div>
                 <div class="list-text">
                   <ul>
-                    <li class="light-text">1 glass</li>
+                    <li class="food-text">{{diet.liquid.numGlassesSoda || 0}} glass</li>
                   </ul>
                 </div>
               </div>
@@ -173,7 +173,7 @@
                   <div class="list-heading dark-text">Alcohol</div>
                   <div class="list-text">
                     <ul>
-                      <li class="light-text">1 glass</li>
+                      <li class="food-text">{{diet.liquid.numGlassesAlcohol || 0}} glass</li>
                     </ul>
                   </div>
                 </div>
@@ -181,7 +181,7 @@
                     <div class="list-heading dark-text">Tea</div>
                     <div class="list-text">
                       <ul>
-                        <li class="light-text">3 cups</li>
+                        <li class="food-text">{{diet.liquid.numCupsTea || 0}} cups</li>
                       </ul>
                     </div>
                   </div>
@@ -189,25 +189,25 @@
                       <div class="list-heading dark-text">Coffee</div>
                       <div class="list-text">
                         <ul>
-                          <li class="light-text">3 cups</li>
+                          <li class="food-text">{{diet.numCupsCoffee || 0}} cups</li>
                         </ul>
                       </div>
                     </div>
       </div>
   </div>
   <div class="vitals-container">
-    <div class="card-heading">Vitals</div>
+    <div class="vitals-card-heading">Vitals</div>
     <div class="vital-charts">
       <div class="chart box">
         <div class="card-heading">Weight</div>
           <hp-bar-chart
-          :chartdata="chartdata"
+          :chartdata="weightChartData"
           :options="options"/>
       </div>
       <div class="chart box">
         <div class="card-heading">Blood Pressure</div>
           <hp-bar-chart
-          :chartdata="chartdata"
+          :chartdata="bpChartData"
           :options="options"/>
       </div>
     </div>
@@ -313,12 +313,12 @@
                     :chartdata="sleepQualityChartData"
                     :options="options"/>
                 </div>
-                <div class="chart">
+                <!-- <div class="chart">
                     <div class="card-heading">Proteobacteria Percentage</div>
                     <hp-bar-chart
                     :chartdata="proteobacteriaPercentageChartData"
                     :options="options"/>
-                </div>
+                </div> -->
   </div>
   </div>
   <div class="no-data" v-else>Loading...</div>
