@@ -6,6 +6,8 @@ const PATIENT_PORT = 'https://api.healthiyou.com';
 const API_PREFIX = 'api/v1';
 // const ACCESS_KEY = 'access_token';
 
+const PATIENT_ID = 'P1632596165';
+
 const globals = {
     serviceUrls: serviceUrls,
     headers: {},
@@ -14,6 +16,7 @@ const globals = {
       tablet: '1024',
       desktop: '1440',
     },
+    patientId: PATIENT_ID,
     
     getHeaders() {
     //   if (this.getCookie(ACCESS_KEY)) {
@@ -24,9 +27,15 @@ const globals = {
       // }
       return this.headers;
     },
-    getRestUrl(endPoint) {
+    getRestUrl(endPoint, param) {
       let url = '';
-      url = `${PATIENT_PORT}/${API_PREFIX}/${this.serviceUrls[endPoint]}`;
+      url = `${PATIENT_PORT}/${API_PREFIX}/${this.serviceUrls[endPoint]}/${this.patientId}`;
+
+      if(param === 'bp') {
+        url += '?deviceType=blood%20pressure%20monitor';
+      } else if(param === 'weight') {
+        url += '?deviceType=weight%20scale';
+      }
       return url;
     },
     getUrlParam(paramKey) {
@@ -36,6 +45,18 @@ const globals = {
         objURL[$1] = $3;
       });
       return objURL[paramKey];
+    },
+
+    getPatientId() {
+      const patientIdUrl = window.location.href;
+      let newUrl = new URL(patientIdUrl);
+      let pathname = newUrl.pathname.split('/');
+      const id = pathname[pathname.length-1];
+      if (id) {
+        this.patientId = id;
+      } else {
+        this.patientId = PATIENT_ID;
+      }
     },
   
     replaceParamValue(paramKey, newParamValue) {

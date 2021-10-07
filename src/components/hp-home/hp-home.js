@@ -1,6 +1,7 @@
 import HpBarChart from './../hp-bar-chart/hp-bar-chart.vue';
 import HpPieChart from './../hp-pie-chart/hp-pie-chart.vue';
 import PatientService from '../../services/patient-service';
+import globals from '../../utils/globals';
 
 export default {
   name: 'hp-home',
@@ -8,6 +9,7 @@ export default {
   props: {},
   data() {
     return {
+      globals,
       patientService: new PatientService(),
       patientInitials: '',
       patientAge: 50,
@@ -340,6 +342,7 @@ export default {
 
   },
   mounted() {
+    this.globals.getPatientId();
     const config = {};
     this.patientService.getPatientDetails(config,this.handlePatientResponse,this.handleResponseError);
     this.patientService.getMedicationDetails(config,this.handleMedicationResponse,this.handleResponseError);
@@ -350,7 +353,8 @@ export default {
     // this.patientService.getMicrobiomeDetails(config,this.handleMicrobiomeResponse,this.handleResponseError);
     this.patientService.getDnaResultDetails(config,this.handleDnaResultResponse,this.handleResponseError);
     this.patientService.getTaskDetails(config,this.handleTaskResponse,this.handleResponseError);
-    this.patientService.getWeightDetails(config,this.handleWeightResponse,this.handleResponseError);
+
+    this.patientService.getWeightDetails(config, this.handleWeightResponse,this.handleResponseError);
   },
   methods: {
     handlePatientResponse(res) {

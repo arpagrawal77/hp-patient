@@ -60,13 +60,13 @@ class patientService extends RootService {
 
   getWeightDetails(requestConfig, successCallback, errorCallback) {
     const config = requestConfig;
-    config.url = globals.getRestUrl('weight');
+    config.url = globals.getRestUrl('weight', 'weight');
     this.get(config, successCallback, errorCallback);
   }
 
   getBPDetails(requestConfig, successCallback, errorCallback) {
     const config = requestConfig;
-    config.url = globals.getRestUrl('bloodPressure');
+    config.url = globals.getRestUrl('bloodPressure', 'bp');
     this.get(config, successCallback, errorCallback);
   }
 }
